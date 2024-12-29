@@ -102,8 +102,8 @@ function mainCards(city){
     div.style.flexFlow="column wrap";
     div.style.alignItems="center";
     div.style.backgroundColor="white";
-    div.style.width="30vw";
-    div.style.height="25vw";
+    div.style.width="25vw";
+    div.style.height="15vw";
     div.style.borderRadius="25px";
     main.append(div);
     cardContent(city, milisecondsToDay, div);
@@ -167,8 +167,8 @@ function addedCities(city, j, time){
     div.style.flexDirection="column";
     div.style.alignItems="center";
     div.style.backgroundColor="white";
-    div.style.width="30vw";
-    div.style.height="25vw";
+    div.style.width="25vw";
+    div.style.height="15vw";
     div.style.borderRadius="25px";
     div.style.position = "relative";
     body.append(div);
