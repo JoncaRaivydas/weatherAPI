@@ -225,6 +225,7 @@ const updateCardContent=async(city, time)=>{
             pictureNumber=x;
         }
     });
+    conditionCode.alt=`${data.conditionCode}`;
     conditionCode.src=`./media/${pictureNumber}.png`;
 
 }
@@ -234,11 +235,20 @@ const cityExist = async(inputValue)=>{
     const response = await fetch(`https://api.meteo.lt/v1/places/${inputValue}/forecasts/long-term`);
     const data =await response.json();
     if(data.error!=null){
-        alert(`${inputValue} tokio ivesto miesto nėra`);
+        alert(`'${inputValue}' tokio ivesto miesto nėra`);
     }
     else{
-        isCityInLS(inputValue);
-    }
+        let k=0;
+        for(let i=0; i<cityArray.length; i++){
+            if(cityArray[i].normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase().includes(inputValue.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase())){
+            k=k+1;
+            alert(`'${inputValue}' toks miestas jau yra atvaizduojamas`)
+            break
+            }
+        }
+        if(k==0){
+            isCityInLS(inputValue);
+    }}
 }
     catch(error){
         console.log(error);
@@ -250,6 +260,7 @@ function isCityInLS(inputValue){
         if(savedCitylist[i].normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase().includes(inputValue.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase())){
             console.log(k);
             k=k+1;
+            alert(`'${inputValue}' toks miestas jau yra atvaizduojamas`)
             break
         }
     }
